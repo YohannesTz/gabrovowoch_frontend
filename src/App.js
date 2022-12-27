@@ -9,7 +9,7 @@ import {
   FormFeedback,
   Card,
   CardHeader,
-  CardText
+  CardText,
 } from "reactstrap";
 import axios from "axios";
 
@@ -74,7 +74,7 @@ function App() {
         "https://gabrovowoch-backend.onrender.com/jokes"
       );
       console.log(res);
-	  setJokes(res);
+      setJokes(res);
       setIsDataLoading(false);
     } catch (res) {
       setIsDataLoading(false);
@@ -112,17 +112,18 @@ function App() {
       {!isDataLoading ? (
         <Button onClick={handleDataLoading}>Load Jokes</Button>
       ) : (
-        jokes.map((jokeItem) => {
-          return (
-            <div>
-              <Card>
-                <CardHeader>{jokeItem.title}</CardHeader>
-                <CardText>{jokeItem.content}</CardText>
-              </Card>
-            </div>
-          );
-        })
+        <Spinner />
       )}
+      {jokes.map((jokeItem) => {
+        return (
+          <div>
+            <p>------------------------------------</p>
+            <h3>{jokeItem.title}</h3>
+            <p>{jokeItem.content}</p>
+            <p>------------------------------------</p>
+          </div>
+        );
+      })}
     </Container>
   );
 }
