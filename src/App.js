@@ -1,7 +1,14 @@
 import "./App.css";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container, Input, Spinner, FormFeedback, Card } from "reactstrap";
+import {
+  Button,
+  Container,
+  Input,
+  Spinner,
+  FormFeedback,
+  Card,
+} from "reactstrap";
 import axios from "axios";
 
 function App() {
@@ -12,7 +19,7 @@ function App() {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSuccessfull, setIsSuccessfull] = React.useState(false);
-  
+
   const [jokes, setJokes] = React.useState([]);
   const [isDataLoading, setIsDataLoading] = React.useState(false);
 
@@ -39,7 +46,7 @@ function App() {
     } catch (err) {
       console.log(err);
       setIsLoading(false);
-	  setIsSuccessfull(false)
+      setIsSuccessfull(false);
     }
   };
 
@@ -58,24 +65,18 @@ function App() {
     });
   };
 
-  const handleDataLoading = (e) => {
-	try {
-		setIsDataLoading(true);
-		const res = await axios.get(
-			"https://gabrovowoch-backend.onrender.com/jokes",
-			{
-			  headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-			  },
-			}
-		  );
-		console.log(res);
-		setIsDataLoading(false);
-	} catch(res) {
-		setIsDataLoading(false);
-	}
-  }
+  const handleDataLoading = async (e) => {
+    try {
+      setIsDataLoading(true);
+      const res = await axios.get(
+        "https://gabrovowoch-backend.onrender.com/jokes"
+      );
+      console.log(res);
+      setIsDataLoading(false);
+    } catch (res) {
+      setIsDataLoading(false);
+    }
+  };
 
   return (
     <Container className="my-5">
@@ -105,24 +106,20 @@ function App() {
       ) : (
         " "
       )}
-	  {isDataLoading? (
-		<Button onClick={handleDataLoading}>Load Jokes</Button>
-	  ): (
-		jokes.map((joke) => {
-			return (
-				<div>
-					<Card>
-						<CardHeader>
-							joke.title
-						</CardHeader>
-						<CardText>
-							joke.content
-						</CardText>
-					</Card>
-				</div>
-			)
-		})
-	  )}
+      {isDataLoading ? (
+        <Button onClick={handleDataLoading}>Load Jokes</Button>
+      ) : (
+        jokes.map((joke) => {
+          return (
+            <div>
+              <Card>
+                <CardHeader>{joke.title}</CardHeader>
+                <CardText>{joke.content}</CardText>
+              </Card>
+            </div>
+          );
+        })
+      )}
     </Container>
   );
 }
