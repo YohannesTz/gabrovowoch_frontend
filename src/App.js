@@ -25,7 +25,7 @@ function App() {
   const [jokes, setJokes] = React.useState([]);
   const [isDataLoading, setIsDataLoading] = React.useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     try {
       setIsLoading(true);
       const joke = {
@@ -44,6 +44,7 @@ function App() {
       );
       console.log(res);
       setIsLoading(false);
+	  setJokes(res);
       setIsSuccessfull(true);
     } catch (err) {
       console.log(err);
