@@ -8,6 +8,8 @@ import {
   Spinner,
   FormFeedback,
   Card,
+  CardHeader,
+  CardText
 } from "reactstrap";
 import axios from "axios";
 
