@@ -109,7 +109,7 @@ function App() {
       ) : (
         " "
       )}
-      {isDataLoading ? (
+      {!isDataLoading ? (
         <Button onClick={handleDataLoading}>Load Jokes</Button>
       ) : (
         jokes.map((joke) => {
