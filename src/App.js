@@ -70,8 +70,8 @@ function App() {
       const res = await axios.get(
         "https://gabrovowoch-backend.onrender.com/jokes"
       );
-      console.log(res);
-      setJokes(res);
+      console.log(res.data);
+      setJokes(res.data);
       setIsDataLoading(false);
     } catch (res) {
       setIsDataLoading(false);
