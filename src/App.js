@@ -44,7 +44,6 @@ function App() {
       );
       console.log(res);
       setIsLoading(false);
-	  setJokes(res);
       setIsSuccessfull(true);
     } catch (err) {
       console.log(err);
@@ -75,6 +74,7 @@ function App() {
         "https://gabrovowoch-backend.onrender.com/jokes"
       );
       console.log(res);
+	  setJokes(res);
       setIsDataLoading(false);
     } catch (res) {
       setIsDataLoading(false);
@@ -112,12 +112,12 @@ function App() {
       {!isDataLoading ? (
         <Button onClick={handleDataLoading}>Load Jokes</Button>
       ) : (
-        jokes.map((joke) => {
+        jokes.map((jokeItem) => {
           return (
             <div>
               <Card>
-                <CardHeader>{joke.title}</CardHeader>
-                <CardText>{joke.content}</CardText>
+                <CardHeader>{jokeItem.title}</CardHeader>
+                <CardText>{jokeItem.content}</CardText>
               </Card>
             </div>
           );
