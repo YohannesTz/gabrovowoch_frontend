@@ -42,7 +42,7 @@ function App() {
       console.log(res);
       setIsLoading(false);
       setIsSuccessfull(true);
-	  //handleClear();
+	  handleClear();
     } catch (err) {
       console.log(err);
       setIsLoading(false);
@@ -50,7 +50,7 @@ function App() {
     }
   };
 
-  const handleChange = () => {
+  const handleChange = (event) => {
     setformValue({
       ...formValue,
       [event.target.name]: event.target.value,
